@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Sale Prediction</h1>
+    <form method="POST" class="space-y-4">
+        <div>
+            <label for="future_date" class="block text-sm font-medium text-gray-700">Future Date</label>
+            <input type="date" id="future_date" name="future_date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        <div>
+            <label for="future_time" class="block text-sm font-medium text-gray-700">Future Time</label>
+            <input type="time" id="future_time" name="future_time" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        <div>
+            <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name</label>
+            <select id="item_name" name="item_name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                {% for item in items %}
+                <option value="{{ item }}" {% if item == selected_item %}selected{% endif %}>{{ item }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="is_special_event" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                <span class="ml-2">Special Event</span>
+            </label>
+        </div>
+        <button type="submit" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Predict Sale
+        </button>
+    </form>
+    {% if prediction is not none %}
+    <div class="mt-8 p-4 bg-blue-100 rounded-md">
+        <h2 class="text-xl font-semibold mb-2">Prediction Result</h2>
+        <p>Predicted quantity for {{ selected_item }}: <span class="font-bold">{{ prediction }}</span></p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

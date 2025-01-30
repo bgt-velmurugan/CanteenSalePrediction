@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Edit Sale Entry</h1>
+    <form method="POST" class="space-y-4">
+        <div>
+            <label for="date_time" class="block text-sm font-medium text-gray-700">Date and Time</label>
+            <input type="datetime-local" id="date_time" name="date_time" value="{{ sale.date_time.strftime('%Y-%m-%dT%H:%M') }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        <div>
+            <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name</label>
+            <input type="text" id="item_name" name="item_name" value="{{ sale.item_name }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        <div>
+            <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input type="number" id="quantity" name="quantity" value="{{ sale.quantity }}" required min="1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        <div>
+            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+            <input type="number" id="price" name="price" value="{{ sale.price }}" required min="0" step="0.01" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        </div>
+        <div>
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="is_special_event" {% if sale.is_special_event %}checked{% endif %} class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                <span class="ml-2">Special Event</span>
+            </label>
+        </div>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Update Sale Entry
+        </button>
+    </form>
+</div>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center">
+    <h1 class="text-4xl font-bold mb-8">Welcome to College Canteen Demand Prediction</h1>
+    <div class="space-y-4">
+        <a href="{{ url_for('sales_entry') }}" class="block w-64 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
+            Sales Entry
+        </a>
+        <a href="{{ url_for('sale_prediction') }}" class="block w-64 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-center">
+            Sale Prediction
+        </a>
+        <a href="{{ url_for('sales_trend') }}" class="block w-64 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded text-center">
+            Sales Trend
+        </a>
+    </div>
+</div>
+{% endblock %}
+
